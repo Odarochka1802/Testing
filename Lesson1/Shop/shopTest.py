@@ -27,6 +27,15 @@ class TestShop(unittest.TestCase):
         self.assertEqual(sorted_products[0].title, 'Apple')  # Assuming 'Apple' has the lowest cost
         self.assertEqual(sorted_products[-1].title, 'Banana')  # Assuming 'Banana' has the highest cost
 
+    def test_sortProductsByPrice(self):
+        sorted_products = self.shop.sort_products_by_price()
+        for i in range(len(sorted_products) - 1):
+            self.assertLessEqual(sorted_products[i].cost, sorted_products[i + 1].cost)
+
+    def test_getMostExpensiveProduct(self):
+        most_expensive = self.shop.get_most_expensive_product()
+        self.assertEqual(max(self.products, key=lambda x: x.cost), most_expensive)
+
 
 if __name__ == '__main__':
     unittest.main()
