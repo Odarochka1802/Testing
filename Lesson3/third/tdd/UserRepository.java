@@ -21,4 +21,11 @@ public class UserRepository {
         return false;
     }
 
+    public void logoutAllExceptAdmins() {
+        for (User user : data) {
+            if (!user.isAdmin) {
+                user.isAuthenticate = false;
+            }
+        }
+    }
 }
